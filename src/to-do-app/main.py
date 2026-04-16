@@ -10,6 +10,9 @@ class MyApp:
         label = Label(root, text = "Some label text")
         label.pack()
         
+        #label["text"] = "New label text"
+        #label["font"] = ("Courier", 40)
+        label.configure(text = "New label text", font = ("Courier", 40))
     
 root = Tk()
 MyApp(root)
