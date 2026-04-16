@@ -10,7 +10,7 @@ class MyApp:
         
         self.label_text = StringVar()
         label = Label(root, text = "Some label text", textvariable = self.label_text)
-        label.pack(side = tk.LEFT)
+        #label.pack(side = tk.LEFT)
         
         #label["text"] = "New label text"
         #label["font"] = ("Courier", 40)
@@ -19,7 +19,9 @@ class MyApp:
         
         self.entry_text = StringVar()
         entry = Entry(root, textvariable = self.entry_text)
-        entry.pack(side = tk.LEFT)
+        #entry.pack(side = tk.LEFT)
+        entry.place(x = 100, y = 50)
+        
         
         #label["textvariable"] = entry_text
 
