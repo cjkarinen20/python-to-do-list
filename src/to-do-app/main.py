@@ -41,6 +41,12 @@ class ToDoListApp:
         items_list.bind("<<ListboxSelect>>", lambda s: self.select_item(items_list.curselection()))
         items_list.grid(column = 1, row = 2, sticky = (E, W))
 
+        # -Selected Description Label-
+        self.selected_description = StringVar()
+        selected_description_label = Label(frame, textvariable = self.selected_description)
+        selected_description_label.grid(column = 1, row = 3, sticky = (E, W))
+
+
         # -Label Text-
         self.label_text = StringVar()
         label = Label(frame, text = "Some label text", textvariable = self.label_text)
@@ -64,9 +70,8 @@ class ToDoListApp:
         
     # -Dropdown Select Item Logic Method-
     def select_item(self, index):
-        # selected_item = self.list_item_strings[index[0]]
-        # print(selected_item)
-        print("Item Selected")
+        selected_item = self.to_do_items[index[0]]
+        self.selected_description.set(selected_item.description)
         
 root = Tk()
 ToDoListApp(root)
