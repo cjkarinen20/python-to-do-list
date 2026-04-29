@@ -39,12 +39,12 @@ class ToDoListApp:
         # -Dropdown List Box-
         items_list = Listbox(frame, listvariable = self.to_do_names)
         items_list.bind("<<ListboxSelect>>", lambda s: self.select_item(items_list.curselection()))
-        items_list.grid(column = 1, row = 2, sticky = (E, W))
+        items_list.grid(column = 1, row = 2, sticky = (E, W), rowspan = 5)
 
         # -Selected Description Label-
         self.selected_description = StringVar()
-        selected_description_label = Label(frame, textvariable = self.selected_description)
-        selected_description_label.grid(column = 1, row = 3, sticky = (E, W))
+        selected_description_label = Label(frame, textvariable = self.selected_description, wraplength = 200)
+        selected_description_label.grid(column = 1, row = 7, sticky = (E, W))
 
         # -New Item-
         new_item_label = Label(frame, text = "New Item")
@@ -72,11 +72,17 @@ class ToDoListApp:
         save_button = Button(frame, text = "Save", command = self.save_item)
         save_button.grid(column = 2, row = 6, sticky = (E))
         
+        for child in frame.winfo_children():
+            child.grid_configure(padx = 10, pady = 5)
+        
+        
     # -Button Press Logic Method-
     def save_item(self):
-        # text = self.entry_text.get()
-        # self.label_text.set(text)
-        print("Save Button Pressed")
+        name = self.name.get()
+        description = self.description.get()
+        new_item = ToDoItem(name, description)
+        self.to_do_items.append(new_item)
+        self.to_do_names.set(list(map(lambda x: x.name, self.to_do_items)))
         
     # -Dropdown Select Item Logic Method-
     def select_item(self, index):
