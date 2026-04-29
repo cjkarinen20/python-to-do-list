@@ -21,46 +21,52 @@ class ToDoListApp:
         frame.grid(column = 1, row = 1, sticky = (N, E, S, W))
         root.columnconfigure(1, weight = 1)
         root.rowconfigure(1, weight = 1)
+
+        # -To-Do List Label Text-
+        list_label = Label(frame, text = "To Do Items")
+        list_label.grid(column = 1, row = 1, sticky = (S, W))
         
+        # -To-Do List Items-
         self.to_do_items = [
             ToDoItem("Workout", "Push-Ups, Pull-Ups, Squats"),
             ToDoItem("House Work", "Clean kitchen, Sweep floors, Do laundry"),
             ToDoItem("Groceries", "Buy bread, milk, eggs"),
         ]
         
-        # -Label Text Widget-
+        # -Get To-Do Item Names-
+        self.to_do_names = StringVar(value = list(map(lambda x: x.name, self.to_do_items)))
+        
+        # -Dropdown List Box-
+        items_list = Listbox(frame, listvariable = self.to_do_names)
+        items_list.bind("<<ListboxSelect>>", lambda s: self.select_item(items_list.curselection()))
+        items_list.grid(column = 1, row = 2, sticky = (E, W))
+
+        # -Label Text-
         self.label_text = StringVar()
         label = Label(frame, text = "Some label text", textvariable = self.label_text)
-        # Configure the styling and sizing of the label text.
+        
         label.configure(text = "New label text", font = ("Courier", 40))
         
         # -Entry Text Display-
         self.entry_text = StringVar()
         entry = Entry(frame, textvariable = self.entry_text)
-        entry.grid(column = 2, row = 1)
+        # entry.grid(column = 2, row = 1)
     
         # -Input Box Button-
         button = Button(frame, text = "Button text", command = self.press_button)
-        button.grid(column = 1, row = 2, sticky = (S, E, W))
-        button.configure(width = 10, height = 2, font = ("Courier", 12))
-
-        # -Dropdown List Widget-
-        list_item_strings = ["Hey", "Hi", "Hello", "Howdy", "Greetings"]
-        list_items = StringVar(value = list_item_strings)
-        listbox = Listbox(frame, listvariable = list_items)
-        listbox["height"] = 3
-        listbox.bind("<<ListboxSelect>>", lambda s: self.select_item(listbox.curselection()))
-        listbox.grid(column = 2, row = 2)
+        # button.grid(column = 1, row = 2, sticky = (S, E, W))
+        # button.configure(width = 10, height = 2, font = ("Courier", 12))
         
-    # Button Press Logic Method
+    # -Button Press Logic Method-
     def press_button(self):
         text = self.entry_text.get()
         self.label_text.set(text)
         
-    # Dropdown Select Item Logic Method
+    # -Dropdown Select Item Logic Method-
     def select_item(self, index):
-        selected_item = self.list_item_strings[index[0]]
-        print(selected_item)
+        # selected_item = self.list_item_strings[index[0]]
+        # print(selected_item)
+        print("Item Selected")
         
 root = Tk()
 ToDoListApp(root)
