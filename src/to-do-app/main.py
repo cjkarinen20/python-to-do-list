@@ -1,16 +1,21 @@
 from tkinter import * 
 import tkinter as tk
 
-class MyApp:
+class ToDoListApp:
     
     def __init__(self, root):
-        root.title("My app")
-        root.geometry("500x400")
-        root.maxsize(1000, 800)
+        
+        root.title("To-Do List")
+
+
+        frame = Frame(root, borderwidth = 2, relief = "sunken")
+        frame.grid(column = 1, row = 1, sticky = (N, E, S, W))
+        root.columnconfigure(1, weight = 1)
+        root.rowconfigure(1, weight = 1)
         
         self.label_text = StringVar()
-        label = Label(root, text = "Some label text", textvariable = self.label_text)
-        label.grid(column = 1, row = 1)
+        label = Label(frame, text = "Some label text", textvariable = self.label_text)
+        #label.grid(column = 1, row = 1)
         #label.pack(side = tk.LEFT)
         
         #label["text"] = "New label text"
@@ -19,14 +24,14 @@ class MyApp:
         label.configure(text = "New label text", font = ("Courier", 40))
         
         self.entry_text = StringVar()
-        entry = Entry(root, textvariable = self.entry_text)
+        entry = Entry(frame, textvariable = self.entry_text)
         #entry.pack(side = tk.LEFT)
         #entry.place(x = 100, y = 50)
         entry.grid(column = 2, row = 1)
         
         #label["textvariable"] = entry_text
 
-        button = Button(root, text = "Button text", command = self.press_button)
+        button = Button(frame, text = "Button text", command = self.press_button)
 
         button.grid(column = 1, row = 2, sticky = (S, E, W))
         button.configure(width = 10, height = 2, font = ("Courier", 12))
@@ -35,7 +40,7 @@ class MyApp:
 
         list_item_strings = ["Hey", "Hi", "Hello", "Howdy", "Greetings"]
         list_items = StringVar(value = list_item_strings)
-        listbox = Listbox(root, listvariable = list_items)
+        listbox = Listbox(frame, listvariable = list_items)
         #listbox.pack(side = tk.LEFT, padx = 40, pady = 20)
         listbox["height"] = 3
         listbox.bind("<<ListboxSelect>>", lambda s: self.select_item(listbox.curselection()))
