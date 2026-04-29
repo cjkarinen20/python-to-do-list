@@ -46,27 +46,37 @@ class ToDoListApp:
         selected_description_label = Label(frame, textvariable = self.selected_description)
         selected_description_label.grid(column = 1, row = 3, sticky = (E, W))
 
-
-        # -Label Text-
-        self.label_text = StringVar()
-        label = Label(frame, text = "Some label text", textvariable = self.label_text)
+        # -New Item-
+        new_item_label = Label(frame, text = "New Item")
+        new_item_label.grid(column = 2, row = 1, sticky = (S, W))
         
-        label.configure(text = "New label text", font = ("Courier", 40))
+        # -Item Label-
+        name_label = Label(frame, text = "Item Name")
+        name_label.grid(column = 2, row = 2, sticky = (S, W))
         
-        # -Entry Text Display-
-        self.entry_text = StringVar()
-        entry = Entry(frame, textvariable = self.entry_text)
-        # entry.grid(column = 2, row = 1)
-    
+        # -Item Name Entry-
+        self.name = StringVar()
+        name_entry = Entry(frame, textvariable = self.name)
+        name_entry.grid(column = 2, row = 3, sticky = (N, E, W))
+        
+        # -Description Label-
+        description_label = Label(frame, text = "Item Description")
+        description_label.grid(column = 2, row = 4, sticky = (S, W))
+        
+        # -Description Entry-
+        self.description = StringVar()
+        description_entry = Entry(frame, textvariable = self.description)
+        description_entry.grid(column = 2, row = 5, sticky = (N, E, W))
+        
         # -Input Box Button-
-        button = Button(frame, text = "Button text", command = self.press_button)
-        # button.grid(column = 1, row = 2, sticky = (S, E, W))
-        # button.configure(width = 10, height = 2, font = ("Courier", 12))
+        save_button = Button(frame, text = "Save", command = self.save_item)
+        save_button.grid(column = 2, row = 6, sticky = (E))
         
     # -Button Press Logic Method-
-    def press_button(self):
-        text = self.entry_text.get()
-        self.label_text.set(text)
+    def save_item(self):
+        # text = self.entry_text.get()
+        # self.label_text.set(text)
+        print("Save Button Pressed")
         
     # -Dropdown Select Item Logic Method-
     def select_item(self, index):
