@@ -10,6 +10,7 @@ class MyApp:
         
         self.label_text = StringVar()
         label = Label(root, text = "Some label text", textvariable = self.label_text)
+        label.grid(column = 1, row = 1)
         #label.pack(side = tk.LEFT)
         
         #label["text"] = "New label text"
@@ -20,20 +21,22 @@ class MyApp:
         self.entry_text = StringVar()
         entry = Entry(root, textvariable = self.entry_text)
         #entry.pack(side = tk.LEFT)
-        entry.place(x = 100, y = 50)
-        
+        #entry.place(x = 100, y = 50)
+        entry.grid(column = 2, row = 1)
         
         #label["textvariable"] = entry_text
 
         button = Button(root, text = "Button text", command = self.press_button)
-        button.pack(side = tk.LEFT)
+        #button.pack(side = tk.LEFT)
+        button.grid(column = 1, row = 2, sticky =(S, E, W))
         
         list_item_strings = ["Hey", "Hi", "Hello", "Howdy", "Greetings"]
         list_items = StringVar(value = list_item_strings)
         listbox = Listbox(root, listvariable = list_items)
-        listbox.pack(side = tk.LEFT, padx = 40, pady = 20)
+        #listbox.pack(side = tk.LEFT, padx = 40, pady = 20)
         listbox["height"] = 3
         listbox.bind("<<ListboxSelect>>", lambda s: self.select_item(listbox.curselection()))
+        listbox.grid(column = 2, row = 2)
         
     def press_button(self):
         text = self.entry_text.get()
