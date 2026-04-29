@@ -27,9 +27,12 @@ class MyApp:
         #label["textvariable"] = entry_text
 
         button = Button(root, text = "Button text", command = self.press_button)
+
+        button.grid(column = 1, row = 2, sticky = (S, E, W))
+        button.configure(width = 10, height = 2, font = ("Courier", 12))
         #button.pack(side = tk.LEFT)
-        button.grid(column = 1, row = 2, sticky =(S, E, W))
-        
+        #button.place(x = 0, y = 0)
+
         list_item_strings = ["Hey", "Hi", "Hello", "Howdy", "Greetings"]
         list_items = StringVar(value = list_item_strings)
         listbox = Listbox(root, listvariable = list_items)
